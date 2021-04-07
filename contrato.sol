@@ -31,8 +31,8 @@ contract EMUAI_NFTs is ERC721, Ownable {
     /**
     * @dev We don't want to give our ownership away by accident.
     */
-    function renounceOwnership() public virtual onlyOwner override {}
-
+    function renounceOwnership() public virtual onlyOwner override { }
+    function transferOwnership(address newOwner) public virtual onlyOwner override { }
 
     /**
     * @dev Mints yourself an NFT. Or more. You do you.
@@ -47,9 +47,9 @@ contract EMUAI_NFTs is ERC721, Ownable {
 
         // Mint the amount of provided EMUAI-NFTs.
         for (uint i = 0; i < numerOfNFTs; i++) {
-            uint mintIndex = totalSupply;
+            uint mintIndex = totalSupply+1;
             _safeMint(msg.sender, mintIndex);
-            //_setTokenURI(mintIndex, "");
+            //_setTokenURI(mintIndex, ""); TODO
             totalSupply ++;
         }
     }
