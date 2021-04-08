@@ -18,7 +18,8 @@ contract EMUAI_NFTs is ERC721, Ownable {
 
     // Sascha gets a cut because of his collaboration. Thank you very much!
     /* TODO: FILL CORRECT ADDRESS */
-    address sascha = 0x1F618d91dee238312552aEbA562956Cfd8915841;
+    address sascha = 0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2;
+    uint sascha_share = 2; // 2%
     
     // Counts the supply of EMUs minted
     uint16 public totalSupply;
@@ -33,6 +34,33 @@ contract EMUAI_NFTs is ERC721, Ownable {
     */
     function renounceOwnership() public virtual onlyOwner override { }
     function transferOwnership(address newOwner) public virtual onlyOwner override { }
+
+
+    function getBalance() public view onlyOwner returns(uint256){
+        return address(this).balance;
+    }
+
+
+    /**
+    * @dev The function that makes the URI based on the owner and IPNS.
+    */
+    function tokenURI(uint256 tokenId) public view override returns (string memory) {
+        require(_exists(tokenId), "ERC721Metadata: URI query for nonexistent token");
+        //string memory baseURI = _baseURI();
+        
+        /**
+         * return bytes(baseURI).length > 0
+         * ? string(abi.encodePacked(baseURI, IPNS(tokenId + ownerOf(tokenId)))
+         * : '';
+         */
+        return _baseURI();
+    }
+    
+
+    function _baseURI() internal pure override returns (string memory) {
+        return "emuai.cl/";
+    }
+
 
     /**
     * @dev Mints yourself an NFT. Or more. You do you.
@@ -60,7 +88,8 @@ contract EMUAI_NFTs is ERC721, Ownable {
     */
     function withdraw() onlyOwner public {
         uint balance = address(this).balance;
-        payable(msg.sender).transfer(balance * 98 / 100);
-        payable(sascha).transfer(balance * 2 / 100);
+        uint256 sasha_ammount = balance * sascha_share / 100;
+        payable(msg.sender).transfer(SafeMath.sub(balance, sasha_ammount));
+        payable(sascha).transfer(sasha_ammount);
     }
 }
