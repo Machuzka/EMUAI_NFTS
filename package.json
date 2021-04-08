@@ -1,0 +1,13 @@
+{
+  "name": "EMUAI_NFTS",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:emuai-cl/EMUAI_NFTS.git",
+  "license": "MIT",
+  "scripts": {
+    "build": "rimraf build && solc -o build --bin --optimize contrato.sol"
+  },
+  "devDependencies": {
+    "rimraf": "^3.0.2"
+  }
+}
