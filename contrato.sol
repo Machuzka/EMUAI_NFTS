@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v2.5.0/contracts/math/SafeMath.sol";
+import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 
 
 contract EMUAI_NFTs is ERC721, Ownable {
@@ -55,12 +55,6 @@ contract EMUAI_NFTs is ERC721, Ownable {
          */
         return _baseURI();
     }
-    
-
-    function _baseURI() internal pure override returns (string memory) {
-        return "emuai.cl/";
-    }
-
 
     /**
     * @dev Mints yourself an NFT. Or more. You do you.
