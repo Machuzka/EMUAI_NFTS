@@ -82,7 +82,7 @@ contract EMUAI_NFTs is ERC721, Ownable {
     /**
     * @dev Changes the base URI if we want to move things in the future (Callable by owner only)
     */
-    function changeBaseURI(string memory baseURI) onlyOwner public {
-       _setBaseURI(baseURI);
+    function changeBaseURI(string memory newBaseURI) onlyOwner public {
+       _setBaseURI(newBaseURI);
     }
 }
