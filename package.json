@@ -5,7 +5,7 @@
   "repository": "git@github.com:emuai-cl/EMUAI_NFTS.git",
   "license": "MIT",
   "scripts": {
-    "build": "rimraf build && solc -o build --bin --optimize contrato.sol"
+    "build": "rimraf build && solc -o build --abi --bin --optimize contrato.sol"
   },
   "devDependencies": {
     "rimraf": "^3.0.2"
