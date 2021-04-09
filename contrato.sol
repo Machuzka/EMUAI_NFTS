@@ -26,9 +26,13 @@ contract EMUAI_NFTs is ERC721, Ownable {
     
     // Counts the supply of EMUs minted
     uint16 public totalSupply;
+    
+    //Stores the base URI
+    string private baseURI;
   
-    constructor() ERC721("EMUAI", "EMU") {
+    constructor(string memory OriginalBaseURI) ERC721("EMUAI", "EMU") {
         totalSupply = 0;
+        changeBaseURI(OriginalBaseURI);
     }
 
 
@@ -39,25 +43,10 @@ contract EMUAI_NFTs is ERC721, Ownable {
     function transferOwnership(address newOwner) public virtual onlyOwner override { }
 
 
-    function getBalance() public view onlyOwner returns(uint256){
-        return address(this).balance;
+    function _baseURI() internal view override returns (string memory) {
+        return baseURI;
     }
 
-
-    /**
-    * @dev The function that makes the URI based on the owner and IPNS.
-    */
-    function tokenURI(uint256 tokenId) public view override returns (string memory) {
-        require(_exists(tokenId), "ERC721Metadata: URI query for nonexistent token");
-        //string memory baseURI = _baseURI();
-        
-        /**
-         * return bytes(baseURI).length > 0
-         * ? string(abi.encodePacked(baseURI, IPNS(tokenId + ownerOf(tokenId)))
-         * : '';
-         */
-        return _baseURI();
-    }
 
     /**
     * @dev Mints yourself an NFT. Or more. You do you.
@@ -74,7 +63,6 @@ contract EMUAI_NFTs is ERC721, Ownable {
         for (uint i = 0; i < numberOfNFTs; i++) {
             uint mintIndex = totalSupply+1;
             _safeMint(msg.sender, mintIndex);
-            //_setTokenURI(mintIndex, ""); TODO
             totalSupply ++;
         }
     }
@@ -88,5 +76,13 @@ contract EMUAI_NFTs is ERC721, Ownable {
         uint256 sasha_ammount = balance * sascha_share / 100;
         payable(msg.sender).transfer(SafeMath.sub(balance, sasha_ammount));
         payable(sascha).transfer(sasha_ammount);
+    }
+
+
+    /**
+    * @dev Changes the base URI if we want to move things in the future (Callable by owner only)
+    */
+    function changeBaseURI(string memory baseURI) onlyOwner public {
+       _setBaseURI(baseURI);
     }
 }
