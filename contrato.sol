@@ -16,10 +16,13 @@ contract EMUAI_NFTs is ERC721, Ownable {
     // Maximum amount of EMUAI-NFTs in existance. Ever.
     uint16 public constant MAX_NFT_SUPPLY = 5000;
 
+    // Token price in wei
+    uint256 public constant TOKEN_PRICE = 50000000000000000;
+
     // Sascha gets a cut because of his collaboration. Thank you very much!
     /* TODO: FILL CORRECT ADDRESS */
-    address sascha = 0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2;
-    uint sascha_share = 2; // 2%
+    address constant sascha = 0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2;
+    uint constant sascha_share = 2; // 2%
     
     // Counts the supply of EMUs minted
     uint16 public totalSupply;
@@ -59,16 +62,16 @@ contract EMUAI_NFTs is ERC721, Ownable {
     /**
     * @dev Mints yourself an NFT. Or more. You do you.
     */
-    function mintNFT(uint16 numerOfNFTs) public payable {
+    function mintNFT(uint16 numberOfNFTs) public payable {
         // Some exceptions that need to be handled.
         require(block.timestamp >= SALE_START_TIMESTAMP, "Sale has not started yet");
         require(totalSupply < MAX_NFT_SUPPLY, "Sale has already ended.");
-        require(numerOfNFTs > 0, "You cannot mint 0 NFTs.");
-        require(SafeMath.add(totalSupply, numerOfNFTs) <= MAX_NFT_SUPPLY, "Exceeds maximum NFTs supply. Please try to mint less EMUAI-NFTs.");
-        require(SafeMath.mul(50000000000000000, numerOfNFTs) == msg.value, "Amount of Ether sent is not correct.");
+        require(numberOfNFTs > 0, "You cannot mint 0 NFTs.");
+        require(SafeMath.add(totalSupply, numberOfNFTs) <= MAX_NFT_SUPPLY, "Exceeds maximum NFTs supply. Please try to mint less EMUAI-NFTs.");
+        require(SafeMath.mul(TOKEN_PRICE, numberOfNFTs) == msg.value, "Amount of Ether sent is not correct.");
 
         // Mint the amount of provided EMUAI-NFTs.
-        for (uint i = 0; i < numerOfNFTs; i++) {
+        for (uint i = 0; i < numberOfNFTs; i++) {
             uint mintIndex = totalSupply+1;
             _safeMint(msg.sender, mintIndex);
             //_setTokenURI(mintIndex, ""); TODO
