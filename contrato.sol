@@ -11,7 +11,8 @@ contract EMUAI_NFTs is ERC721, Ownable {
     
     // Time of when the sale starts.
      /* TODO: FILL CORRECT TIMESTAMP */
-    uint256 public constant SALE_START_TIMESTAMP = 162058790;
+    uint256 public SALE_START_TIMESTAMP = 162058790; // Sat, 1 May 2021 18:00:00 GMT: 1619892000
+    uint256 public SALE_END_TIMESTAMP = 1625097600; // Sat, 1 Jul 2021 00:00:00 GMT: 1625097600
 
     // Maximum amount of EMUAI-NFTs in existance. Ever.
     uint16 public constant MAX_NFT_SUPPLY = 5000;
@@ -43,6 +44,15 @@ contract EMUAI_NFTs is ERC721, Ownable {
     function transferOwnership(address newOwner) public virtual onlyOwner override { }
 
 
+    /**
+    * @dev Changes the start and end timestamps if needed (only owner).
+    */
+    function setSaleTimestamps(uint256 start, uint256 end) onlyOwner public{
+        SALE_START_TIMESTAMP = start;
+        SALE_END_TIMESTAMP = end;
+    }
+    
+
     function _baseURI() internal view override returns (string memory) {
         return baseURI;
     }
@@ -53,9 +63,9 @@ contract EMUAI_NFTs is ERC721, Ownable {
     */
     function mintNFT(uint16 numberOfNFTs) public payable {
         // Some exceptions that need to be handled.
-        require(block.timestamp >= SALE_START_TIMESTAMP, "Sale has not started yet");
+        require(block.timestamp >= SALE_START_TIMESTAMP, "Sale has not started yet.");
+        require(block.timestamp <= SALE_END_TIMESTAMP, "Sale has already ended.");
         require(totalSupply < MAX_NFT_SUPPLY, "Sale has already ended.");
-        require(numberOfNFTs > 0, "You cannot mint 0 NFTs.");
         require(SafeMath.add(totalSupply, numberOfNFTs) <= MAX_NFT_SUPPLY, "Exceeds maximum NFTs supply. Please try to mint less EMUAI-NFTs.");
         require(SafeMath.mul(TOKEN_PRICE, numberOfNFTs) == msg.value, "Amount of Ether sent is not correct.");
 
