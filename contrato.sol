@@ -31,7 +31,7 @@ contract EMUAI_NFTs is ERC721, Ownable {
     //Stores the base URI
     string private baseURI;
   
-    constructor(string memory OriginalBaseURI) ERC721("EMUAI", "EMU") {
+    constructor(string memory OriginalBaseURI) ERC721("EMUAI_NFTs", "EMU") {
         totalSupply = 0;
         changeBaseURI(OriginalBaseURI);
     }
