@@ -1,4 +1,7 @@
-/*                                                                                     ------------------------------------------------------------------------------               
+// SPDX-License-Identifier: MIT
+/*
+*
+*                                                                                     ------------------------------------------------------------------------------               
 *                                                      :=*#%@@@@@@@@@@@%%##**+==-:::-=+*%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*:              
 *                                                   :*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#*=-.     ..................................................................                   
 *          =*#%%#+-.                               =@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#*=:.:=+%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*-                   
@@ -13,8 +16,18 @@
 *                                              #@-  .+%-.:--=+*###%%%#%@@@@+               :=*@%*=:       -#+=-%* %@@@@@@@@@@@@@@@@@@@@@@@*.                                          
 *                                               .=-. .                .:--:                    .=*%@%*===+*@%#+:  :---------------------   
 *
-*/                                                                                                                                                              
-// SPDX-License-Identifier: MIT
+*
+*
+*  Welcome to the EMU NFTs sale for the EMUAI Solar Car proyect. Each of these NFTs are going to represent ownership of one 1 by 1 centimeter of our solar car's 
+*  vitual model surface and on our physical car once it is built (with the help of the funding of this campaign). This representation will also be called an EMU.
+*  
+*  The Owner of each particular EMU will be able to upload an image to that space for the world to see!!
+*  Our car will compete in many races around the globe and appear in countless media (we have lots of contacts).
+*
+*  Thank you very much for your contribution and for making this proyect possible.
+*/
+
+
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
