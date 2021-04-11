@@ -46,10 +46,10 @@ contract EMUAI_NFTs is ERC721, Ownable {
     // Token price in wei
     uint256 public constant TOKEN_PRICE = 50000000000000000;
 
-    // Sascha gets a cut because of his collaboration. Thank you very much!
+    // Sascha gets a cut because of his collaboration.
     /* TODO: FILL CORRECT ADDRESS */
     address constant sascha = 0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2;
-    uint constant sascha_share = 1; // 1%
+    uint constant sascha_share = 1; // 0.1%
     
     // Counts the supply of EMUs minted
     uint16 public totalSupply;
@@ -109,7 +109,7 @@ contract EMUAI_NFTs is ERC721, Ownable {
     */
     function withdraw() onlyOwner public {
         uint balance = address(this).balance;
-        uint256 sasha_ammount = balance * sascha_share / 100;
+        uint256 sasha_ammount = balance * sascha_share / 1000;
         payable(msg.sender).transfer(SafeMath.sub(balance, sasha_ammount));
         payable(sascha).transfer(sasha_ammount);
     }
