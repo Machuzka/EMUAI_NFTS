@@ -51,7 +51,7 @@ contract EMUAI_NFTs is ERC721, Ownable {
     // Sascha gets a cut because of his collaboration. Thank you very much!
     /* TODO: FILL CORRECT ADDRESS */
     address constant sascha = 0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2;
-    uint constant sascha_share = 2; // 2%
+    uint constant sascha_share = 1; // 1%
     
     // Counts the supply of EMUs minted
     uint16 public totalSupply;
