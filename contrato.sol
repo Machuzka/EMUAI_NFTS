@@ -83,9 +83,9 @@ contract EMUAI_NFTs is ERC721, Ownable {
 
 
     /**
-    * @dev Mints yourself an NFT. Or more. You do you.
+    * @dev Mints yourself an EMU-NFT. Or more. You do you.
     */
-    function mintNFT(uint16 numberOfNFTs) public payable {
+    function mintEMU(uint16 numberOfNFTs) public payable {
         // Some exceptions that need to be handled.
         require(block.timestamp >= SALE_START_TIMESTAMP, "Sale has not started yet.");
         require(block.timestamp <= SALE_END_TIMESTAMP, "Sale has already ended.");
