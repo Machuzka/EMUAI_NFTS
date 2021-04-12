@@ -39,7 +39,7 @@ contract EMUAI_NFTs is ERC721, Ownable {
     uint256 public SALE_END_TIMESTAMP = 1625097600; // Sat, 1 Jul 2021 00:00:00 GMT: 1625097600
 
     // Maximum amount of EMUAI-NFTs in existance. Ever.
-    uint16 public constant MAX_NFT_SUPPLY = 5000;
+    uint16 public constant MAX_NFT_SUPPLY = 5940;
 
     // Token price in wei
     uint256 public constant TOKEN_PRICE = 50000000000000000;
