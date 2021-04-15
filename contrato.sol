@@ -85,7 +85,7 @@ contract EMUAI_NFTs is ERC721, Ownable {
         require(block.timestamp >= SALE_START_TIMESTAMP, "Sale has not started yet.");
         require(block.timestamp <= SALE_END_TIMESTAMP, "Sale has already ended.");
         require(totalSupply < MAX_NFT_SUPPLY, "Sale has already ended.");
-        require(numberOfNFTs <= MAX_TRANSACTION_MINT, "Exceeded maximum ammount(250).");
+        require(numberOfNFTs <= MAX_TRANSACTION_MINT, "Exceeds maximum ammount(250).");
         require(totalSupply + numberOfNFTs <= MAX_NFT_SUPPLY, "Exceeds maximum NFTs supply. Please try to mint less EMUAI-NFTs.");
         require(TOKEN_PRICE * numberOfNFTs == msg.value, "Amount of Ether sent is not correct.");
 
