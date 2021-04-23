@@ -39,24 +39,19 @@ contract EMUAI_NFTs is ERC721, Ownable {
 
     // Maximum amount of EMUAI-NFTs in existance. Ever.
     uint16 public constant MAX_NFT_SUPPLY = 5940;
-    
+
     // Maximum amount of EMUAI-NFTs to be minted in one transaction. This is to avoid hitting the block gas limit.
     uint16 public constant MAX_TRANSACTION_MINT = 250;
     
     // Token price in wei
     uint256 public constant TOKEN_PRICE = 50000000000000000;
 
-    // Sascha gets a cut because of his collaboration. Thank you very much!
-    /* TODO: FILL CORRECT ADDRESS */
-    address constant sascha = 0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2;
-    uint8 constant sascha_share = 1; // 0.1%
-    
     // Counts the supply of EMUs minted
     uint16 public totalSupply;
-    
+
     //Stores the base URI
     string private baseURI;
-  
+
     constructor(string memory OriginalBaseURI) ERC721("EMUAI_NFTs", "EMU") {
         totalSupply = 0;
         changeBaseURI(OriginalBaseURI);
@@ -70,7 +65,7 @@ contract EMUAI_NFTs is ERC721, Ownable {
         SALE_START_TIMESTAMP = start;
         SALE_END_TIMESTAMP = end;
     }
-    
+
 
     function _baseURI() internal view override returns (string memory) {
         return baseURI;
@@ -83,10 +78,9 @@ contract EMUAI_NFTs is ERC721, Ownable {
     function mintEMU(uint16 numberOfNFTs) public payable {
         // Some exceptions that need to be handled.
         require(block.timestamp >= SALE_START_TIMESTAMP, "Sale has not started yet.");
-        require(block.timestamp <= SALE_END_TIMESTAMP, "Sale has already ended.");
-        require(totalSupply < MAX_NFT_SUPPLY, "Sale has already ended.");
+        require(totalSupply < MAX_NFT_SUPPLY && block.timestamp <= SALE_END_TIMESTAMP, "Sale has already ended.");
         require(numberOfNFTs <= MAX_TRANSACTION_MINT, "Exceeds maximum ammount(250).");
-        require(totalSupply + numberOfNFTs <= MAX_NFT_SUPPLY, "Exceeds maximum NFTs supply. Please try to mint less EMUAI-NFTs.");
+        require(totalSupply + numberOfNFTs <= MAX_NFT_SUPPLY, "Exceeds maximum EMUs supply.");
         require(TOKEN_PRICE * numberOfNFTs == msg.value, "Amount of Ether sent is not correct.");
 
         // Mint the amount of provided EMUAI-NFTs.
@@ -103,9 +97,7 @@ contract EMUAI_NFTs is ERC721, Ownable {
     */
     function withdraw() onlyOwner public {
         uint balance = address(this).balance;
-        uint256 sasha_ammount = balance * sascha_share / 1000;
-        payable(msg.sender).transfer(balance - sasha_ammount);
-        payable(sascha).transfer(sasha_ammount);
+        payable(msg.sender).transfer(balance);
     }
 
 
