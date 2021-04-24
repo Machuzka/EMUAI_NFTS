@@ -34,7 +34,7 @@ contract EMUAI_NFTs is ERC721, Ownable {
 
     // Time of when the sale starts.
      /* TODO: FILL CORRECT TIMESTAMP */
-    uint256 public SALE_START_TIMESTAMP = 162058790; // Sat, 1 May 2021 18:00:00 GMT: 1619892000
+    uint256 public SALE_START_TIMESTAMP = 1620928800; // Thursday, 13 May 2021 18:00:00 GMT: 1620928800
     uint256 public SALE_END_TIMESTAMP = 1625097600; // Sat, 1 Jul 2021 00:00:00 GMT: 1625097600
 
     // Maximum amount of EMUAI-NFTs in existance. Ever.
