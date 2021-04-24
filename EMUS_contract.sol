@@ -14,8 +14,8 @@
 *                                            :+:                .::-:                  .=*%@#+===*%%*=.  -------------------:                                                        
 *                                                                                          .::--:.                                                                                   
 *                                                                                                                                                               
-*  Welcome to the EMU NFTs sale for the EMUAI Solar Car proyect. Each of these NFTs are going to represent ownership of one 1.5 by 1.5 centimeter 
-*  of our solar car's vitual model surface and on our physical car once it is built (with the help of the funding of this campaign). 
+*  Welcome to the EMU NFTs sale for the EMUAI Solar Car proyect. Each of these NFTs are going to represent ownership of one 1.5 by 1.5 centimeter sqaure
+*  of our solar car's vitual model surface and of our physical car once it is built (with the help of the funding of this campaign). 
 *  This representation will also be called an EMU.
 *  
 *  The Owner of each particular EMU will be able to upload an image to that space for the world to see!!
