@@ -14,8 +14,9 @@
 *                                            :+:                .::-:                  .=*%@#+===*%%*=.  -------------------:                                                        
 *                                                                                          .::--:.                                                                                   
 *                                                                                                                                                               
-*  Welcome to the EMU NFTs sale for the EMUAI Solar Car proyect. Each of these NFTs are going to represent ownership of one 1 by 1 centimeter of our solar car's 
-*  vitual model surface and on our physical car once it is built (with the help of the funding of this campaign). This representation will also be called an EMU.
+*  Welcome to the EMU NFTs sale for the EMUAI Solar Car proyect. Each of these NFTs are going to represent ownership of one 1.5 by 1.5 centimeter 
+*  of our solar car's vitual model surface and on our physical car once it is built (with the help of the funding of this campaign). 
+*  This representation will also be called an EMU.
 *  
 *  The Owner of each particular EMU will be able to upload an image to that space for the world to see!!
 *  Our car will compete in many races around the globe and appear in countless media (we have lots of contacts).
@@ -32,10 +33,9 @@ import "./Ownable.sol";
 
 contract EMUAI_NFTs is ERC721, Ownable {
 
-    // Time of when the sale starts.
-     /* TODO: FILL CORRECT TIMESTAMP */
-    uint256 public SALE_START_TIMESTAMP = 1620928800; // Thursday, 13 May 2021 18:00:00 GMT: 1620928800
-    uint256 public SALE_END_TIMESTAMP = 1625097600; // Sat, 1 Jul 2021 00:00:00 GMT: 1625097600
+    // Time of when the sale starts and ends.
+    uint256 public SALE_START_TIMESTAMP = 1620928800; // Thursday, May 13, 2021 6:00:00 PM GMT
+    uint256 public SALE_END_TIMESTAMP = 1625097600; // Sat, 1 Jul 2021 00:00:00 GMT
 
     // Maximum amount of EMUAI-NFTs in existance. Ever.
     uint16 public constant MAX_NFT_SUPPLY = 5940;
@@ -79,7 +79,7 @@ contract EMUAI_NFTs is ERC721, Ownable {
         // Some exceptions that need to be handled.
         require(block.timestamp >= SALE_START_TIMESTAMP, "Sale has not started yet.");
         require(totalSupply < MAX_NFT_SUPPLY && block.timestamp <= SALE_END_TIMESTAMP, "Sale has already ended.");
-        require(numberOfNFTs <= MAX_TRANSACTION_MINT, "Exceeds maximum ammount(250).");
+        require(numberOfNFTs <= MAX_TRANSACTION_MINT, "Exceeds maximum ammount.");
         require(totalSupply + numberOfNFTs <= MAX_NFT_SUPPLY, "Exceeds maximum EMUs supply.");
         require(TOKEN_PRICE * numberOfNFTs == msg.value, "Amount of Ether sent is not correct.");
 
